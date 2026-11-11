@@ -1,50 +1,74 @@
-# React + TypeScript + Vite
+# AoC Code Editor
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An online code editor built for solving [Advent of Code](https://adventofcode.com/) puzzles. Paste your puzzle input, write your solution, and run it — all in the browser.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Monaco Editor** — VSCode-quality editing with syntax highlighting, minimap, and smooth cursor
+- **Java auto-import** — type a class name and get `import` statements inserted automatically (48 stdlib classes covered)
+- **Puzzle input tab** — paste large input files directly in the UI; sent as stdin on run
+- **Live execution** — code runs on [Judge0 CE](https://ce.judge0.com/), results appear in Output/Errors tabs
+- **Resizable panels** — drag the divider between editor and output
+- **Dark / light theme** — toggle in the header
+- **Font size control** — adjust editor font size from the header
 
-## Expanding the ESLint configuration
+## Tech stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+| | |
+|---|---|
+| Framework | React 18 + TypeScript |
+| Build | Vite 5 |
+| Styling | SCSS + CSS custom properties |
+| Editor | `@monaco-editor/react` (Monaco) |
+| State | Zustand |
+| Execution | Judge0 CE public API |
+| Layout | `react-resizable-panels` |
+| Notifications | `sonner` |
 
-- Configure the top-level `parserOptions` property like this:
+## Getting started
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+npm install
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+App runs at `http://localhost:5173`.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Running code
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+1. Write your solution in the editor (class must be named `Main`)
+2. Paste your puzzle input in the **Input** tab on the right
+3. Click **▶ Run**
+
+Read input in Java with:
+
+```java
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNextLine()) {
+            String line = sc.nextLine();
+            // process line
+        }
+    }
+}
 ```
+
+## Adding a language
+
+Add one entry to `src/config/languages.ts`:
+
+```ts
+{
+  id: 'python',
+  name: 'Python',
+  monacoLanguage: 'python',
+  judge0Id: 71,          // Judge0 language ID
+  fileExtension: '.py',
+  defaultCode: `print("Hello, World!")`,
+}
+```
+
+The language selector and execution wiring update automatically.
