@@ -1,0 +1,51 @@
+.input-panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__textarea {
+    flex: 1;
+    width: 100%;
+    resize: none;
+    border: none;
+    outline: none;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    padding: 14px 16px;
+    caret-color: var(--accent);
+
+    &::placeholder {
+      color: var(--text-secondary);
+      font-style: italic;
+    }
+
+    // scrollbar styling
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 3px;
+    }
+  }
+
+  &__meta {
+    flex-shrink: 0;
+    padding: 5px 16px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border);
+  }
+}

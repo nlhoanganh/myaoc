@@ -1,0 +1,69 @@
+@use 'variables' as *;
+
+:root {
+  --bg-primary: #1e1e1e;
+  --bg-secondary: #252526;
+  --bg-tertiary: #2d2d30;
+  --bg-hover: #37373d;
+  --border: #3e3e42;
+  --text-primary: #cccccc;
+  --text-secondary: #9d9d9d;
+  --accent: #007acc;
+  --accent-hover: #1a8dd8;
+  --accent-fg: #ffffff;
+  --success: #4ec94e;
+  --error: #f44747;
+  --run-bg: #388a34;
+  --run-hover: #3d9a39;
+}
+
+[data-theme='light'] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f3f3f3;
+  --bg-tertiary: #ececec;
+  --bg-hover: #e5e5e5;
+  --border: #d4d4d4;
+  --text-primary: #333333;
+  --text-secondary: #717171;
+  --accent: #0078d4;
+  --accent-hover: #106ebe;
+  --accent-fg: #ffffff;
+  --success: #008000;
+  --error: #a1260d;
+  --run-bg: #167f2a;
+  --run-hover: #1a9630;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $font-ui;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow: hidden;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+pre,
+code {
+  font-family: $font-mono;
+}

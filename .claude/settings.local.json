@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(node -e \"const m = require\\(''./node_modules/react-resizable-panels''\\); console.log\\(Object.keys\\(m\\)\\)\")",
+      "Bash(npm ls:*)",
+      "Bash(curl -s https://emkc.org/api/v2/piston/execute -H \"Content-Type: application/json\" -d \"{\"\"language\"\":\"\"java\"\",\"\"version\"\":\"\"*\"\",\"\"files\"\":[{\"\"content\"\":\"\"public class Main { public static void main\\(String[] args\\) { System.out.println\\(\\\\\"\"Hello, World!\\\\\"\"\\); } }\"\"}]}\")",
+      "Bash(curl -s \"https://ce.judge0.com/about\")",
+      "Bash(curl:*)",
+      "Bash(start http://localhost:5173)"
+    ]
+  }
+}
