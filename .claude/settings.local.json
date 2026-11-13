@@ -8,7 +8,9 @@
       "Bash(curl -s https://emkc.org/api/v2/piston/execute -H \"Content-Type: application/json\" -d \"{\"\"language\"\":\"\"java\"\",\"\"version\"\":\"\"*\"\",\"\"files\"\":[{\"\"content\"\":\"\"public class Main { public static void main\\(String[] args\\) { System.out.println\\(\\\\\"\"Hello, World!\\\\\"\"\\); } }\"\"}]}\")",
       "Bash(curl -s \"https://ce.judge0.com/about\")",
       "Bash(curl:*)",
-      "Bash(start http://localhost:5173)"
+      "Bash(start http://localhost:5173)",
+      "Bash(npx tsc:*)",
+      "Bash(cd:*)"
     ]
   }
 }

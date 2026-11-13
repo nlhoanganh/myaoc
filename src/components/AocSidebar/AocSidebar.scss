@@ -1,0 +1,242 @@
+$aoc-bg: #0f0f23;
+$aoc-text: #00cc00;
+$aoc-gold: #ffff66;
+$aoc-silver: #9999cc;
+$aoc-grey: #333340;
+$aoc-dim: #666680;
+$aoc-border: #333340;
+
+.aoc-sidebar {
+  width: 240px;
+  min-width: 240px;
+  height: 100%;
+  background: $aoc-bg;
+  color: $aoc-text;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 13px;
+  border-right: 1px solid $aoc-border;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+
+  &__banner {
+    text-align: center;
+    padding: 12px 8px 8px;
+    color: $aoc-gold;
+    font-size: 12px;
+    line-height: 1.4;
+    white-space: pre;
+  }
+
+  &__year {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px 8px;
+  }
+
+  &__year-label {
+    color: $aoc-text;
+    font-size: 13px;
+  }
+
+  &__year-select {
+    background: $aoc-bg;
+    color: $aoc-gold;
+    border: 1px solid $aoc-border;
+    font-family: inherit;
+    font-size: 13px;
+    padding: 2px 4px;
+    cursor: pointer;
+    outline: none;
+
+    &:focus {
+      border-color: $aoc-text;
+    }
+
+    option {
+      background: $aoc-bg;
+      color: $aoc-gold;
+    }
+  }
+}
+
+// Calendar grid
+.aoc-calendar {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+  padding: 4px 8px;
+
+  &__day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4px 2px;
+    border: none;
+    background: transparent;
+    color: $aoc-text;
+    font-family: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 2px;
+    line-height: 1.3;
+
+    &:hover {
+      background: rgba($aoc-text, 0.1);
+    }
+
+    &--active {
+      background: rgba($aoc-text, 0.2);
+      outline: 1px solid $aoc-text;
+    }
+
+    &--locked {
+      opacity: 0.25;
+      cursor: not-allowed;
+
+      &:hover {
+        background: transparent;
+      }
+    }
+  }
+
+  &__day-num {
+    color: $aoc-text;
+    white-space: pre;
+  }
+
+  &__stars {
+    color: $aoc-dim;
+    font-size: 11px;
+    letter-spacing: 1px;
+
+    &--gold {
+      color: $aoc-gold;
+    }
+
+    &--silver {
+      color: $aoc-silver;
+    }
+
+    &--wip {
+      color: $aoc-grey;
+    }
+  }
+}
+
+// Day detail
+.aoc-day-detail {
+  border-top: 1px solid $aoc-border;
+  padding: 8px 12px;
+  margin-top: auto;
+
+  &__header {
+    text-align: center;
+    color: $aoc-gold;
+    margin-bottom: 8px;
+    font-size: 13px;
+  }
+
+  &__tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+
+  &__tab {
+    flex: 1;
+    padding: 4px;
+    background: transparent;
+    color: $aoc-dim;
+    font-family: inherit;
+    font-size: 12px;
+    border: 1px solid $aoc-border;
+    cursor: pointer;
+
+    &:hover {
+      color: $aoc-text;
+    }
+
+    &--active {
+      color: $aoc-gold;
+      border-color: $aoc-gold;
+    }
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 6px;
+  }
+
+  &__label {
+    color: $aoc-text;
+    font-size: 12px;
+  }
+
+  &__input {
+    background: darken($aoc-bg, 2%);
+    color: #ffffff;
+    border: 1px solid $aoc-border;
+    font-family: inherit;
+    font-size: 13px;
+    padding: 4px 8px;
+    outline: none;
+
+    &:focus {
+      border-color: $aoc-text;
+    }
+
+    &::placeholder {
+      color: $aoc-dim;
+    }
+  }
+
+  &__status {
+    margin-bottom: 8px;
+    font-size: 12px;
+  }
+
+  &__solved {
+    color: $aoc-gold;
+  }
+
+  &__unsolved {
+    color: $aoc-dim;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__btn {
+    background: transparent;
+    font-family: inherit;
+    font-size: 12px;
+    padding: 4px 8px;
+    border: 1px solid $aoc-border;
+    cursor: pointer;
+
+    &--save {
+      color: $aoc-text;
+
+      &:hover {
+        border-color: $aoc-text;
+        background: rgba($aoc-text, 0.1);
+      }
+    }
+
+    &--clear {
+      color: #cc3333;
+
+      &:hover {
+        border-color: #cc3333;
+        background: rgba(#cc3333, 0.1);
+      }
+    }
+  }
+}

@@ -1,0 +1,272 @@
+// ---------------------------------------------------------------------------
+// LoginPage.scss — AoC-themed login screen with ASCII Christmas vibes
+// ---------------------------------------------------------------------------
+
+$aoc-bg: #0f0f23;
+$aoc-green: #00cc00;
+$aoc-green-dim: #009900;
+$aoc-gold: #ffff66;
+$aoc-red: #ff4444;
+$aoc-grey: #666680;
+$aoc-white: #cccccc;
+$aoc-error: #ff4444;
+$aoc-trunk: #8b6914;
+
+// -- Snowfall animation -----------------------------------------------------
+
+@keyframes snowfall {
+  0% {
+    transform: translateY(-5vh) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  25% {
+    transform: translateY(25vh) translateX(15px);
+  }
+  50% {
+    transform: translateY(50vh) translateX(-10px);
+  }
+  75% {
+    transform: translateY(75vh) translateX(20px);
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(105vh) translateX(5px);
+    opacity: 0;
+  }
+}
+
+@keyframes star-glow {
+  0%,
+  100% {
+    text-shadow: 0 0 4px $aoc-gold;
+  }
+  50% {
+    text-shadow: 0 0 12px $aoc-gold, 0 0 20px $aoc-gold;
+  }
+}
+
+// -- Layout -----------------------------------------------------------------
+
+.login-page {
+  position: fixed;
+  inset: 0;
+  background: $aoc-bg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  color: $aoc-white;
+  overflow: hidden;
+
+  // -- Snowflakes -----------------------------------------------------------
+
+  &__snow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  &__flake {
+    position: absolute;
+    color: rgba($aoc-white, 0.4);
+    font-size: 14px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    animation: snowfall linear infinite;
+
+    @for $i from 1 through 40 {
+      &:nth-child(#{$i}) {
+        left: #{($i * 2.5) % 100}#{"%"};
+        animation-duration: #{6 + ($i % 8)}s;
+        animation-delay: #{-($i * 0.6)}s;
+        font-size: #{10 + ($i % 5) * 2}px;
+        opacity: #{0.2 + ($i % 4) * 0.15};
+      }
+    }
+  }
+
+  // -- Card -----------------------------------------------------------------
+
+  &__card {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 440px;
+    width: 100%;
+    padding: 24px;
+  }
+
+  // -- ASCII tree -----------------------------------------------------------
+
+  &__tree {
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: left;
+    margin-bottom: 16px;
+    white-space: pre;
+
+    .tree-star {
+      color: $aoc-gold;
+      margin-left: 2px;
+      animation: star-glow 2s ease-in-out infinite;
+    }
+
+    .tree-green {
+      color: $aoc-green;
+    }
+
+    .tree-ornament {
+      color: $aoc-red;
+      animation: star-glow 2s ease-in-out infinite;
+    }
+
+    .tree-trunk {
+      color: $aoc-trunk;
+    }
+  }
+
+  // -- Banner ---------------------------------------------------------------
+
+  &__banner {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  &__ornament {
+    display: block;
+    color: $aoc-green-dim;
+    font-size: 13px;
+  }
+
+  &__title {
+    color: $aoc-green;
+    font-size: 20px;
+    font-weight: normal;
+    margin: 6px 0 2px;
+  }
+
+  &__subtitle {
+    color: $aoc-grey;
+    font-size: 14px;
+  }
+
+  // -- Form -----------------------------------------------------------------
+
+  &__form {
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__label {
+    color: $aoc-green;
+    font-size: 13px;
+  }
+
+  &__input {
+    background: darken($aoc-bg, 2%);
+    color: #ffffff;
+    border: 1px solid #333340;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 8px 10px;
+    outline: none;
+    width: 100%;
+
+    &:focus {
+      border-color: $aoc-green;
+    }
+
+    &::placeholder {
+      color: $aoc-grey;
+    }
+  }
+
+  // -- Error ----------------------------------------------------------------
+
+  &__error {
+    color: $aoc-error;
+    font-size: 13px;
+    padding: 4px 0;
+  }
+
+  // -- Submit button --------------------------------------------------------
+
+  &__submit {
+    background: transparent;
+    color: $aoc-green;
+    border: 1px solid #333340;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 4px;
+    transition:
+      border-color 0.15s,
+      background 0.15s,
+      color 0.15s;
+
+    &:hover:not(:disabled) {
+      border-color: $aoc-green;
+      background: rgba($aoc-green, 0.1);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  // -- Mode toggle ----------------------------------------------------------
+
+  &__toggle {
+    margin-top: 20px;
+    text-align: center;
+    color: $aoc-grey;
+    font-size: 13px;
+  }
+
+  &__toggle-btn {
+    display: block;
+    margin: 6px auto 0;
+    background: none;
+    border: none;
+    color: $aoc-green;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+
+    &:hover {
+      color: $aoc-gold;
+    }
+  }
+
+  // -- Year footer ----------------------------------------------------------
+
+  &__years {
+    margin-top: 32px;
+    color: $aoc-grey;
+    font-size: 11px;
+    text-align: center;
+    line-height: 1.8;
+  }
+
+  &__star {
+    color: $aoc-gold;
+  }
+}

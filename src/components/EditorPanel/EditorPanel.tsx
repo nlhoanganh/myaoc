@@ -1,6 +1,8 @@
+import { useEffect, useRef } from 'react';
 import Editor, { OnMount, BeforeMount } from '@monaco-editor/react';
 import type { editor as EditorTypes, Position } from 'monaco-editor';
 import { useEditorStore } from '../../store/editorStore';
+import { useAocStore } from '../../store/aocStore';
 import { JAVA_IMPORTS } from '../../config/javaImports';
 import './EditorPanel.scss';
 
@@ -85,6 +87,17 @@ const handleBeforeMount: BeforeMount = (monaco) => {
 
 export function EditorPanel() {
   const { code, language, theme, fontSize, setCode, setCursor } = useEditorStore();
+  const saveCurrentCode = useAocStore((s) => s.saveCurrentCode);
+  const selectedDay = useAocStore((s) => s.selectedDay);
+  const debounceRef = useRef<ReturnType<typeof setTimeout>>();
+
+  // Auto-save code to localStorage when a day is selected (debounced)
+  useEffect(() => {
+    if (selectedDay === null) return;
+    clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => saveCurrentCode(), 1000);
+    return () => clearTimeout(debounceRef.current);
+  }, [code, selectedDay, saveCurrentCode]);
 
   const monacoTheme = theme === 'dark' ? 'vs-dark' : 'vs';
 

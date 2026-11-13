@@ -3,12 +3,16 @@ import clsx from 'clsx';
 import { LANGUAGES } from '../../config/languages';
 import { useEditorStore } from '../../store/editorStore';
 import { useExecutionStore } from '../../store/executionStore';
+import { useAocStore } from '../../store/aocStore';
+import { useAuthStore } from '../../store/authStore';
 import './Header.scss';
 
 export function Header() {
   const { code, language, theme, fontSize, stdin, setLanguage, setTheme, setFontSize } =
     useEditorStore();
   const { run, status } = useExecutionStore();
+  const { sidebarOpen, toggleSidebar } = useAocStore();
+  const { user, logout } = useAuthStore();
 
   const isRunning = status === 'running';
 
@@ -74,6 +78,20 @@ export function Header() {
           disabled={isRunning}
         >
           {isRunning ? '◌ Running...' : '▶ Run'}
+        </button>
+
+        <button
+          className={clsx('header__aoc-btn', { 'header__aoc-btn--active': sidebarOpen })}
+          onClick={toggleSidebar}
+          title="Toggle AoC sidebar"
+        >
+          ★ AoC
+        </button>
+
+        <span className="header__user">{user}</span>
+
+        <button className="header__logout-btn" onClick={logout} title="Log out">
+          Logout
         </button>
       </div>
     </header>

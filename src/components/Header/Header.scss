@@ -142,4 +142,55 @@
       cursor: not-allowed;
     }
   }
+
+  &__aoc-btn {
+    background: #0f0f23;
+    color: #00cc00;
+    border: 1px solid #333340;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Consolas', monospace;
+    letter-spacing: 0.3px;
+    transition:
+      background 0.15s,
+      border-color 0.15s;
+
+    &:hover {
+      border-color: #00cc00;
+      background: #1a1a3a;
+    }
+
+    &--active {
+      border-color: #ffff66;
+      color: #ffff66;
+    }
+  }
+
+  &__user {
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-family: 'Consolas', monospace;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__logout-btn {
+    color: var(--text-secondary);
+    font-size: 12px;
+    padding: 4px 8px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transition:
+      color 0.15s,
+      border-color 0.15s;
+
+    &:hover {
+      color: var(--error);
+      border-color: var(--error);
+    }
+  }
 }
